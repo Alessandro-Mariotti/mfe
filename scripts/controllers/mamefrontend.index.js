@@ -1,20 +1,21 @@
 'use strict';
-angular.module('mamefrontend').controller('indexController', ['$scope', 'BootstrapService', 'StateManagerService',
-function($scope, BootstrapService, StateManagerService) {
+angular.module('mamefrontend').controller('indexController', ['$rootScope', '$scope', 'BootstrapService', 'StateManagerService',
+function($rootScope, $scope, BootstrapService, StateManagerService) {
 
-  let bootstrap = new BootstrapService();
-  let stateManager = new StateManagerService();
+        let bootstrap = new BootstrapService();
+        let stateManager = new StateManagerService();
 
-  $scope.state = state => stateManager.isState(state);
-  $scope.setState = state => {
-    stateManager.setState(state);
-  };
-  $scope.setState('MAIN');
+        $scope.isState = state => stateManager.isState(state);
+        $scope.setState = state => {
+            stateManager.setState(state);
+        };
+        $scope.state = () => stateManager.currentState();
+        $scope.setState('MAIN');
 
-  $scope.$on('statechange', function(data) {
-    console.log(data);
-  });
+        $rootScope.$on('statechange', function(event, data) {
+            console.log(data);
+        });
 
-  console.log(stateManager.currentState());
+        $scope.getInclude = () => '/views/' + stateManager.getState().toLowerCase() + '.html';
 
 }]);
