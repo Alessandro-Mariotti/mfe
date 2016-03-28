@@ -1,0 +1,9 @@
+{
+  "name": "mamefrontend",
+  "version": "0.0.1",
+  "main": "index.html",
+  "window": {
+    "width":1280,
+    "height":1024
+  }
+}
