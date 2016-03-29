@@ -11,9 +11,12 @@ angular.module('mamefrontend').service('PersistenceService', ['$rootScope', func
 
     Persistence.prototype.loadSystems = function() {
         return this.db.allDocs({
-            includeDocs: true,
-            key: 'system'
+            include_docs: true
         });
+    };
+
+    Persistence.prototype.save = function(system) {
+        return this.db.post(system);
     };
 
     return Persistence;

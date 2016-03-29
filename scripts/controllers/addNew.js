@@ -1,12 +1,12 @@
-angular.module('mamefrontend').controller('addNewController', ['$scope', function($scope) {
+angular.module('mamefrontend').controller('addNewController', ['$scope', 'PersistenceService', function($scope, PersistenceService) {
 
-    $scope.systems = [{
+    $scope.system = {
+        type: 'SYSTEM',
         path: {
             exe: '',
             roms: []
         }
-    }];
-    $scope.system = $scope.systems[0];
+    };
 
     $scope.fileChanged = (prop, element) => {
         switch (prop) {
@@ -31,6 +31,9 @@ angular.module('mamefrontend').controller('addNewController', ['$scope', functio
     };
 
     $scope.save = () => {
-        console.log($scope.systems);
+        (new PersistenceService()).save($scope.system).then(function(response) {
+            $scope.setState('MAIN');
+        });
+
     };
 }]);

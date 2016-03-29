@@ -1,35 +1,32 @@
 angular.module('mamefrontend').service('StateManagerService', ['$rootScope', function($rootScope) {
 
-    const STATES = {
-        MAIN: 0,
-        SETTINGS: 1,
-        ADD_NEW: 2,
-    };
+    const states = ['MAIN', 'ADD_NEW', 'SETTINGS'];
+    const MAIN = 0;
+    const ADD_NEW = 1;
+    const SETTINGS = 2;
 
     function StateManager() {
-        this.state = STATES.MAIN;
+        this.state = states[MAIN];
     };
 
-    StateManager.prototype.currentState = () => {
+    StateManager.prototype.currentState = function() {
         return this.state;
     };
 
-    StateManager.prototype.isState = (state) => {
-        return this.state === STATES[state];
+    StateManager.prototype.isState = function(state) {
+        return this.state === states[state];
     };
 
-    StateManager.prototype.setState = (state) => {
-        if (this.state !== STATES[state]) {
-            $rootScope.$emit('statechange', [this.state, STATES[state]]);
-            this.state = STATES[state];
+    StateManager.prototype.setState = function(state) {
+        if (this.state !== state) {
+            $rootScope.$emit('statechange', [this.state, state]);
+            this.state = states[state];
         }
     };
     StateManager.prototype.getState = () => {
-        for (var key in STATES) {
-            if (this.state === STATES[key]) {
-                return key;
-            }
-        }
+        return states.filter(function(state) {
+            return this.state === state;
+        });
     };
 
     return StateManager;

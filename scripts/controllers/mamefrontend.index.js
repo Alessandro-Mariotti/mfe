@@ -6,24 +6,24 @@ function($rootScope, $scope, BootstrapService, StateManagerService, PersistenceS
         let stateManager = new StateManagerService();
         let persistence = new PersistenceService();
 
-        persistence.info().then(info => {
-            console.log(info);
-        });
         persistence.loadSystems().then(function(response) {
-            console.log(response);
+            $scope.systems = response.rows;
         });
 
-        $scope.isState = state => stateManager.isState(state);
-        $scope.setState = state => {
-            stateManager.setState(state);
+        $scope.setState = function(state) {
+            return stateManager.setState(state);
         };
-        $scope.state = () => stateManager.currentState();
         $scope.setState('MAIN');
+        $scope.isState = function(state) {
+            return stateManager.isState(state);
+        };
+        $scope.state = function() {
+            return stateManager.currentState();
+        };
 
+        $scope.slug = '/views/main.html';
         $rootScope.$on('statechange', function(event, data) {
-            console.log(data);
+            $scope.slug = '/views/' + stateManager.getState().toLowerCase() + '.html';
         });
-
-        $scope.getInclude = () => '/views/' + stateManager.getState().toLowerCase() + '.html';
 
 }]);
