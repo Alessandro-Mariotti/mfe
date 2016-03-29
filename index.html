@@ -4,6 +4,7 @@
     <title>MAME NWJS FRONTEND</title>
     <link rel="stylesheet" href="bower_components/foundation-sites/dist/foundation.min.css"/>
     <link rel="stylesheet" href="styles/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="styles/override.css" />
   </head>
   <body ng-app="mamefrontend" ng-controller="indexController">
 
@@ -12,14 +13,15 @@
         <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
           <span class="menu-icon dark" data-toggle></span>
         </span>
+        <strong>MFE</strong>
       </div>
       <div id="responsive-menu">
         <div class="top-bar-left"></div>
         <div class="top-bar-right">
           <ul class="menu">
             <li>
-                <button type="button" class="button" ng-click="setState('SETTINGS')">
-                    <i class="fi-compass"></i>
+                <button type="button" class="button success" ng-click="setState('ADD_NEW')">
+                    <i class="fi-plus"></i>
                 </button>
             </li>
           </ul>
@@ -29,6 +31,7 @@
 
     <ng-include src="getInclude()"></ng-include>
 
+    <script src="bower_components/pouchdb/dist/pouchdb.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/what-input/what-input.js"></script>
@@ -39,10 +42,11 @@
     <script src="scripts/controllers/systems.js"></script>
     <script src="scripts/controllers/roms.js"></script>
     <script src="scripts/controllers/details.js"></script>
-    <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/addNew.js"></script>
 
     <script src="scripts/services/bootstrap.js"></script>
     <script src="scripts/services/stateManager.js"></script>
+    <script src="scripts/services/persistence.js"></script>
 
   </body>
 </html>

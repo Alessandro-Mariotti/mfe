@@ -3,6 +3,7 @@ angular.module('mamefrontend').service('StateManagerService', ['$rootScope', fun
     const STATES = {
         MAIN: 0,
         SETTINGS: 1,
+        ADD_NEW: 2,
     };
 
     function StateManager() {
