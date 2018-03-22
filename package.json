@@ -1,0 +1,11 @@
+{
+  "name": "mfe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Alessandro-Mariotti/mfe.git",
+  "author": "Alessandro Mariotti <a.mariotti@themadbox.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
+}
