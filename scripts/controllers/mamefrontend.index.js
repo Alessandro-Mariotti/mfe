@@ -26,4 +26,6 @@ function($rootScope, $scope, BootstrapService, StateManagerService, PersistenceS
             $scope.slug = '/views/' + stateManager.getState().toLowerCase() + '.html';
         });
 
+        $scope.isThisAnHotfix = true;
+
 }]);
